@@ -41,15 +41,6 @@ header h3,p
     letter-spacing: 0em;
     text-align: left;
   }
-.button
-  {
-    background: #FFFFFF;
-    border: 1px solid #F2F2F2;
-    border-radius: 8px;
-    height: 32px;
-    width: 32px;
-    cursor:pointer;
-  }
 span
   {
     text-transform: uppercase;
