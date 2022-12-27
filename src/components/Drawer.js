@@ -1,8 +1,8 @@
-function Drawer () {
-    return (
-            <div style={{display: 'none'}} className="cart-bag">
+function Drawer (props) {
+  return (
+            <div className="cart-bag">
         <div className="cart-shadow ">
-        <h2 className="mb-30">Cart  <img className="cart-delete" src="img/close.svg" alt="Remove" /></h2>
+        <h2 className="mb-30 d-flex justify-between">Cart  <img onClick={props.onClose} className="cu-p" src="img/close.svg" alt="Close" /></h2>
         <div className="cartItem d-flex align-center mb-20">
             <div className="mr-30">
               <img width={70} height={70} src="/img/sneakers/1.jpg" alt="Sneakers" /> 
