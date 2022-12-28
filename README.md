@@ -1,5 +1,6 @@
 Sneakers Shop Pet Project
-##Technologies Stack:
+
+# Technologies Stack
 - React
 - React Router
 - React Context
