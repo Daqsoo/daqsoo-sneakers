@@ -2,12 +2,23 @@ import Card from './components/Card'
 import Drawer from './components/Drawer'
 import Header from './components/Header'
 import React from 'react'
-const arr= [
-  {title: 'Nike Blazer Mid Suede Green', price : 300, imageUrl: '/img/sneakers/1.jpg'},
-  {title: 'Nike Blazer Mid Suede Green', price : 300,imageUrl: '/img/sneakers/1.jpg'},
-]
+
 function App() {
-  const [cartOpened,setCartOpened] = React.useState(true)
+  const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]);
+  const [cartOpened,setCartOpened] = React.useState(false)
+
+  React.useEffect(()=> {
+    fetch('https://63ac43f234c46cd7ae7c7e36.mockapi.io/items')
+    .then ((res)=> {
+      return res.json();
+    })
+    .then((json)=>{
+      setItems(json);
+
+    })
+  },[])
+
   return ( <div className="wrapper clear">
       <Header onClickCart={()=> setCartOpened(true)}></Header>
      {cartOpened && <Drawer onClose={()=>setCartOpened(false)}></Drawer>}
@@ -19,9 +30,9 @@ function App() {
             <input placeholder="Search" />  
           </div>
         </div>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
            {
-           arr.map(obj => (<Card
+           items.map(obj => (<Card
            title={obj.title}
            price={obj.price}
            imageUrl={obj.imageUrl}
