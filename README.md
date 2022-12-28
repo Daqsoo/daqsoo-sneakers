@@ -1,5 +1,5 @@
-Sneakers Shop Pet Project using
-Technologies Stack:
+Sneakers Shop Pet Project
+##Technologies Stack:
 - React
 - React Router
 - React Context
