@@ -18,10 +18,15 @@ function App() {
 
     })
   },[])
+  
+  const onAddToCart = (obj) => {
+    setCartItems(prev => [...cartItems,obj]);
+
+  }
 
   return ( <div className="wrapper clear">
       <Header onClickCart={()=> setCartOpened(true)}></Header>
-     {cartOpened && <Drawer onClose={()=>setCartOpened(false)}></Drawer>}
+     {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)}></Drawer>}
     <div className="content p-40">
       <div className="d-flex align-center mb-40 justify-between">
           <h1>Sneakers</h1>
@@ -32,12 +37,12 @@ function App() {
         </div>
           <div className="d-flex flex-wrap">
            {
-           items.map(obj => (<Card
-           title={obj.title}
-           price={obj.price}
-           imageUrl={obj.imageUrl}
+           items.map(item => (<Card
+           title={item.title}
+           price={item.price}
+           imageUrl={item.imageUrl}
            onFavorite={() => console.log('favorite')}
-           onPlus={() => console.log('plus')}
+           onPlus={(obj) => onAddToCart(obj)}
            />))
            }
           </div>
