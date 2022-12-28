@@ -1,4 +1,4 @@
-Sneakers Shop Pet Project
+Sneakers Shop Pet Project using
 Technologies Stack:
 - React
 - React Router
