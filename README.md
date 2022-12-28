@@ -1,3 +1,14 @@
+# Sneakers Shop Pet Project
+
+# Technologies Stack
+- React
+- React Router
+- React Context
+- react-slick
+- SASS / CSS Modules
+- Axios
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
