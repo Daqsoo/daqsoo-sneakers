@@ -53,6 +53,17 @@ b{font-size: 13px;}
     border: 1px solid #F3F3F3;
     border-radius: 10px;
     padding: 0 15px;
+    position: relative;
+
+    .clear
+      {
+        position: absolute;
+        right: 0;
+        width: 18px;
+        height: 18px;
+        top:13px;
+        right: 15px;
+      }
   }
 .searchBlock input
   {
