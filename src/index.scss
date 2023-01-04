@@ -1,3 +1,4 @@
+html { overflow-y: hidden; }
 body {
   margin: 0;
   font-family: system-ui;
@@ -103,6 +104,33 @@ b{font-size: 13px;}
     }
   }
   
+  .cartEmpty
+    {
+      text-align: center;
+
+      p {
+        width: 280px;
+        line-height: 24px;
+      }
+    }
+      .greenButton{
+        width: 245px;
+        margin-top: 20px;
+
+      &:hover {
+        img {
+          transform: rotate(180deg) translateX(3px);
+        }
+      }
+
+      img {
+        position: relative;
+        top: 1px;
+        transform: rotate(180deg);
+        margin-right: 15px;
+        transition: transform 0.14 ease-in-out ;
+      }
+    }
   .cartTotalBlock {
     ul {
       display: block;
