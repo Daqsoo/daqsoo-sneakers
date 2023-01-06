@@ -2,7 +2,7 @@
 
 # Technologies Stack
 - React
-- React Router
+- React Router 5.3.0
 - React Context
 - react-slick
 - SASS / CSS Modules
