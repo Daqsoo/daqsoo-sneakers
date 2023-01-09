@@ -41,17 +41,25 @@ function App() {
     setCartItems((prev) => prev.filter(item=>item.id !== id));
 }
 
-  const onAddToFavorite = (obj) => {
-  axios.post('https://63ac43f234c46cd7ae7c7e36.mockapi.io/favorites', obj);
-  setFavorite(prev => [...prev,obj]);
+const onAddToFavorite = async (obj) => {
+   try{ if (favorites.find((favoriteObj) => favoriteObj.id === obj.id)) {
+      axios.delete(`https://63ac43f234c46cd7ae7c7e36.mockapi.io/favorites/${obj.id}`);
+      setFavorite((prev) => prev.filter(item=>item.id !== obj.id));
+    } else {
+       const {data} = await axios.post('https://63ac43f234c46cd7ae7c7e36.mockapi.io/favorites', obj);
+      setFavorite((prev) => [...prev,data]);
+    }
+    } catch(error) {
+      alert('Failed to add to favorite')
+    } 
+};
 
-}
-  
   return ( <div className="wrapper clear">
     {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}></Drawer>}
      <Header onClickCart={()=> setCartOpened(true)}></Header>
      <Route path="/favorites" exact>
-        <Favorites items={favorites} onAddToFavorite={onAddToFavorite} />
+        <Favorites items={favorites}
+         onAddToFavorite={onAddToFavorite} />
       </Route>
       <Route path="/" exact>
         <Home
