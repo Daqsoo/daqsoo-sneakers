@@ -1,14 +1,16 @@
 import Home from './pages/Home'
+import Favorites from './pages/Favorites'
+
 import Drawer from './components/Drawer'
 import Header from './components/Header'
 import React from 'react';
 import axios from 'axios';
-import {Route} from 'react-router-dom'
+import { Route   } from 'react-router-dom'
 
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
-  const [favorite, setFavorite] = React.useState([]);
+  const [favorites, setFavorite] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened,setCartOpened] = React.useState(false);
 
@@ -46,17 +48,23 @@ function App() {
 }
   
   return ( <div className="wrapper clear">
-      <Header onClickCart={()=> setCartOpened(true)}></Header>
-     {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}></Drawer>}
+    {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}></Drawer>}
+     <Header onClickCart={()=> setCartOpened(true)}></Header>
+     <Route path="/favorites" exact>
+        <Favorites items={favorites} onAddToFavorite={onAddToFavorite} />
+      </Route>
       <Route path="/" exact>
-        <Home items={items}
-         searchValue={searchValue}
+        <Home
+          items={items}
+          searchValue={searchValue}
           setSearchValue={setSearchValue}
           onChangeSearchInput={onChangeSearchInput}
           onAddToFavorite={onAddToFavorite}
-          onAddToCart={onAddToCart} />
-        </Route>
+          onAddToCart={onAddToCart}
+        />
+      </Route>
 
+        
     </div>
   ) 
 }
