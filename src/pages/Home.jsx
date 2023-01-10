@@ -1,6 +1,6 @@
 import Card from '../components/Card'
 
-function Home ({items,
+function Home ({cartItems,items,
     searchValue,
     setSearchValue,
     onChangeSearchInput,
@@ -29,8 +29,9 @@ function Home ({items,
                 key={item.title}
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
+                favorite
+                checked={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
                 {...item}
-                
             />))
             }
         </div>

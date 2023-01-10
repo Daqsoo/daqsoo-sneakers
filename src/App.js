@@ -15,22 +15,22 @@ function App() {
   const [cartOpened,setCartOpened] = React.useState(false);
 
   React.useEffect(()=> {
+    async function fetchData () {
+      const cartResponse = await  axios.get('https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart');
+      const favoriteResponse = await  axios.get('https://63ac43f234c46cd7ae7c7e36.mockapi.io/favorites');
+      const itemsResponse = await axios.get('https://63ac43f234c46cd7ae7c7e36.mockapi.io/items');
 
-    axios.get('https://63ac43f234c46cd7ae7c7e36.mockapi.io/items').then (res=> {
-      setItems(res.data)
-    });
-    axios.get('https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart').then (res=> {
-      setCartItems(res.data)
-    });
-    axios.get('https://63ac43f234c46cd7ae7c7e36.mockapi.io/favorites').then (res=> {
-      setFavorite(res.data)
-    });
+      setCartItems(cartResponse.data)
+      setFavorite(favoriteResponse.data)
+      setItems(itemsResponse.data)
+    }
+    fetchData ();
   },[])
   
   const onChangeSearchInput = ( event ) => {
     setSearchValue(event.target.value);
   }
-  const onAddToCart = async (obj) => {
+  const onAddToCart = (obj) => {
     if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
       axios.delete(`https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart/${obj.id}`);
       setCartItems((prev) => prev.filter(item=>Number(item.id) !== Number(obj.id)));
@@ -69,6 +69,7 @@ return ( <div className="wrapper clear">
       <Route path="/" exact>
         <Home
           items={items}
+          cartItems={cartItems}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           onChangeSearchInput={onChangeSearchInput}
