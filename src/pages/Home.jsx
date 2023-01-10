@@ -30,6 +30,7 @@ function Home ({items,
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
                 {...item}
+                
             />))
             }
         </div>

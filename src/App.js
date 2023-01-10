@@ -30,11 +30,16 @@ function App() {
   const onChangeSearchInput = ( event ) => {
     setSearchValue(event.target.value);
   }
-  const onAddToCart = (obj) => {
-    axios.post('https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart', obj);
-    setCartItems(prev => [...prev,obj]);
-
+  const onAddToCart = async (obj) => {
+    if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+      axios.delete(`https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart/${obj.id}`);
+      setCartItems((prev) => prev.filter(item=>Number(item.id) !== Number(obj.id)));
+    } else {
+      axios.post('https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart', obj);
+      setCartItems((prev) => [...prev,obj]);
+    }
   }
+
 
   const onRemoveItem = (id) => {
     axios.delete(`https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart/${id}`);
@@ -54,7 +59,7 @@ const onAddToFavorite = async (obj) => {
     } 
 };
 
-  return ( <div className="wrapper clear">
+return ( <div className="wrapper clear">
     {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}></Drawer>}
      <Header onClickCart={()=> setCartOpened(true)}></Header>
      <Route path="/favorites" exact>
