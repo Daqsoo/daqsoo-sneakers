@@ -1,4 +1,5 @@
 import Card from '../components/Card'
+import React from 'react';
 
 function Home ({cartItems,items,
     searchValue,
@@ -15,8 +16,6 @@ function Home ({cartItems,items,
             .map(item => (<Card
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
-                favorite
-                checked={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
                 loading={isLoading}
                 {...item}
             />));

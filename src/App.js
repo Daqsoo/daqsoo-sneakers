@@ -5,7 +5,8 @@ import Drawer from './components/Drawer'
 import Header from './components/Header'
 import React from 'react';
 import axios from 'axios';
-import { Route   } from 'react-router-dom'
+import { Route   } from 'react-router-dom';
+import AppContext from './context';
 
 function App() {
   const [items, setItems] = React.useState([]);
@@ -63,28 +64,32 @@ const onAddToFavorite = async (obj) => {
     } 
 };
 
-return ( <div className="wrapper clear">
-    {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}></Drawer>}
-     <Header onClickCart={()=> setCartOpened(true)}></Header>
-     <Route path="/favorites" exact>
-        <Favorites items={favorites}
-         onAddToFavorite={onAddToFavorite} />
-      </Route>
-      <Route path="/" exact>
-        <Home
-          items={items}
-          cartItems={cartItems}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          onChangeSearchInput={onChangeSearchInput}
-          onAddToFavorite={onAddToFavorite}
-          onAddToCart={onAddToCart}
-          isLoading={isLoading}
-        />
-      </Route>
+  const isItemAdded = (id) => {
+    return cartItems.some((obj) => Number(obj.id) === Number(id));
+  }
 
-        
+return ( 
+  <AppContext.Provider value={{cartItems,favorites,items, isItemAdded, onAddToFavorite, setCartOpened}}>
+    <div className="wrapper clear">
+      {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}></Drawer>}
+      <Header onClickCart={()=> setCartOpened(true)}></Header>
+      <Route path="/favorites" exact>
+          <Favorites/>
+        </Route>
+        <Route path="/" exact>
+          <Home
+            items={items}
+            cartItems={cartItems}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            onChangeSearchInput={onChangeSearchInput}
+            onAddToFavorite={onAddToFavorite}
+            onAddToCart={onAddToCart}
+            isLoading={isLoading}
+          />
+        </Route>
     </div>
+  </AppContext.Provider>
   ) 
 }
 

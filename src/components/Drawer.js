@@ -1,4 +1,13 @@
+import Info from "./Info";
+import React from "react";
+
 function Drawer({ onClose, items = [], onRemove }) {
+
+  const  [isOrderComplete, setIsOrderComplete] = React.useState(false);
+  const onClickOrder = () => {
+    setIsOrderComplete(true);
+  }
+
   return (
     <div className="overlay">
       <div className="background-overlay" onClick={onClose} />
@@ -9,7 +18,7 @@ function Drawer({ onClose, items = [], onRemove }) {
 
         {
           items.length > 0 ? 
-          <div>
+          <div className="d-flex flex-column flex">
           <div className="items">
           {items.map((obj)=>(
             <div key={obj.id} className="cartItem d-flex align-center mb-20">
@@ -38,21 +47,16 @@ function Drawer({ onClose, items = [], onRemove }) {
               <b>1074 руб. </b>
             </li>
           </ul>
-          <button className="greenButton">
+          <button onClick={onClickOrder} className="greenButton">
             Оформить заказ <img src="/img/arrow.svg" alt="Arrow" />
           </button>
         </div>
         </div>
         </div>
         :
-
-        <div className="cartEmpty d-flex align-center justify-center flex-column flex">
-        <img className="mb-20" width={120} height={120} src="img/empty-cart.png" alt="Empty Cart" />
-        <h2>Cart is empty</h2>
-        <p className="opacity-6">Add at least 1 product to make order.</p>
-        <button onClick={onClose}  className="greenButton">
-        <img src="img/arrow.svg" alt="Arrow" /> Go Back</button>
-      </div>
+          <Info title="Cart is Empty" 
+          description="Add at least 1 product to make order."
+           image="img/empty-cart.png" />
 
         }
        
