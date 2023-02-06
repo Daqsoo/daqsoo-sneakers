@@ -11,11 +11,11 @@ function Card({id,onFavorite, title,imageUrl,price,onPlus,favorite = false, chec
 
     const onClickPlus = () =>
     {
-        onPlus({id,title,imageUrl,price});
+        onPlus({id,parentId: id,title,imageUrl,price});
     }
  
     const onClickFavorite = () => {
-        onFavorite({id,title,imageUrl,price}); 
+        onFavorite({id,parentId: id,title,imageUrl,price}); 
         SetIsFavorite(!isFavorite);
     }
 

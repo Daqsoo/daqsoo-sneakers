@@ -8,6 +8,7 @@ function Drawer({ onClose, items = [], onRemove }) {
   const  [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const { setCartItems,cartItems } = React.useContext(AppContext);
   const [isLoading,setIsLoading] = React.useState(false);
+  const totalPrice = cartItems.reduce((sum,obj) => obj.price + sum, 0);
 
  const onClickOrder = () => {
     setIsLoading(true);
@@ -26,7 +27,7 @@ function Drawer({ onClose, items = [], onRemove }) {
       <div className="background-overlay" onClick={onClose} />
       <div className="drawer">
         <h2 className="d-flex justify-between mb-30">
-        Корзина <img onClick={onClose} className="cu-p" src="/img/close.svg" alt="Close" />
+        Cart <img onClick={onClose} className="cu-p" src="/img/close.svg" alt="Close" />
         </h2>
 
         {
@@ -50,18 +51,18 @@ function Drawer({ onClose, items = [], onRemove }) {
            <div className="cartTotalBlock">
           <ul>
             <li>
-              <span>Итого:</span>
+              <span>Total</span>
               <div></div>
-              <b>21 498 руб. </b>
+              <b>{totalPrice} $</b>
             </li>
             <li>
-              <span>Налог 5%:</span>
+              <span>With Tax 5%:</span>
               <div></div>
-              <b>1074 руб. </b>
+              <b>{(totalPrice * 5)/100 + totalPrice} $</b>
             </li>
           </ul>
           <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
-            Оформить заказ <img src="/img/arrow.svg" alt="Arrow" />
+            Make Order <img src="/img/arrow.svg" alt="Arrow" />
           </button>
         </div>
         </div>

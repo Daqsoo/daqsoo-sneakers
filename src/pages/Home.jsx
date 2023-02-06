@@ -1,7 +1,7 @@
 import Card from '../components/Card'
 import React from 'react';
 
-function Home ({cartItems,items,
+function Home ({items,
     searchValue,
     setSearchValue,
     onChangeSearchInput,
