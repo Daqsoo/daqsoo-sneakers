@@ -27,7 +27,7 @@ function Drawer({ onClose, items = [], onRemove }) {
       <div className="background-overlay" onClick={onClose} />
       <div className="drawer">
         <h2 className="d-flex justify-between mb-30">
-        Cart <img onClick={onClose} className="cu-p" src="/img/close.svg" alt="Close" />
+        Cart <img onClick={onClose} className="cu-p" src="img/close.svg" alt="Close" />
         </h2>
 
         {
@@ -44,7 +44,7 @@ function Drawer({ onClose, items = [], onRemove }) {
               <p className="mb-5">{obj.title}</p>
               <b>{obj.price}</b>
             </div>
-            <img onClick={()=> onRemove(obj.id)} className="removeBtn" src="/img/close.svg" alt="Remove" />
+            <img onClick={()=> onRemove(obj.id)} className="removeBtn" src="img/close.svg" alt="Remove" />
           </div>
           
           ))}
@@ -62,7 +62,7 @@ function Drawer({ onClose, items = [], onRemove }) {
             </li>
           </ul>
           <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
-            Make Order <img src="/img/arrow.svg" alt="Arrow" />
+            Make Order <img src="img/arrow.svg" alt="Arrow" />
           </button>
         </div>
         </div>
