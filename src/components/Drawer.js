@@ -1,12 +1,25 @@
 import Info from "./Info";
 import React from "react";
+import AppContext from "../context";
+import axios from 'axios';
 
 function Drawer({ onClose, items = [], onRemove }) {
 
   const  [isOrderComplete, setIsOrderComplete] = React.useState(false);
-  const onClickOrder = () => {
+  const { setCartItems,cartItems } = React.useContext(AppContext);
+  const [isLoading,setIsLoading] = React.useState(false);
+
+ const onClickOrder = () => {
+    setIsLoading(true);
     setIsOrderComplete(true);
+    
+    cartItems.forEach(item => {
+      axios.delete('https://63ac43f234c46cd7ae7c7e36.mockapi.io/cart/' + item.id);
+    });
+    setCartItems([]);
+    setIsLoading(false);
   }
+  
 
   return (
     <div className="overlay">
@@ -47,16 +60,16 @@ function Drawer({ onClose, items = [], onRemove }) {
               <b>1074 руб. </b>
             </li>
           </ul>
-          <button onClick={onClickOrder} className="greenButton">
+          <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
             Оформить заказ <img src="/img/arrow.svg" alt="Arrow" />
           </button>
         </div>
         </div>
         </div>
         :
-          <Info title="Cart is Empty" 
-          description="Add at least 1 product to make order."
-           image="img/empty-cart.png" />
+          <Info title={isOrderComplete ? "Order Completed" : "Cart is Empty" }
+          description={isOrderComplete ? "As soon as your order is ready, it will be delivered" : "Add at least 1 product to make order."}
+           image={isOrderComplete ? "img/order.jpg" : "img/empty-cart.png" }/>
 
         }
        

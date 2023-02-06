@@ -69,7 +69,7 @@ const onAddToFavorite = async (obj) => {
   }
 
 return ( 
-  <AppContext.Provider value={{cartItems,favorites,items, isItemAdded, onAddToFavorite, setCartOpened}}>
+  <AppContext.Provider value={{cartItems,favorites,items, isItemAdded, onAddToFavorite, setCartOpened, setCartItems,onRemoveItem}}>
     <div className="wrapper clear">
       {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}></Drawer>}
       <Header onClickCart={()=> setCartOpened(true)}></Header>
