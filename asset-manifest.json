@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/daqsoo-sneakers/static/css/main.91081d8d.css",
-    "main.js": "/daqsoo-sneakers/static/js/main.38610fe4.js",
+    "main.js": "/daqsoo-sneakers/static/js/main.922df861.js",
     "index.html": "/daqsoo-sneakers/index.html",
     "main.91081d8d.css.map": "/daqsoo-sneakers/static/css/main.91081d8d.css.map",
-    "main.38610fe4.js.map": "/daqsoo-sneakers/static/js/main.38610fe4.js.map"
+    "main.922df861.js.map": "/daqsoo-sneakers/static/js/main.922df861.js.map"
   },
   "entrypoints": [
     "static/css/main.91081d8d.css",
-    "static/js/main.38610fe4.js"
+    "static/js/main.922df861.js"
   ]
 }
