@@ -95,11 +95,11 @@ return (
 
       <Header onClickCart={()=> setCartOpened(true)}></Header>
 
-      <Route path="/favorites" exact>
+      <Route path="favorites" exact>
           <Favorites/>
       </Route>
 
-        <Route path="/" exact>
+        <Route path="" exact>
           <Home
             items={items}
             cartItems={cartItems}
@@ -112,7 +112,7 @@ return (
           />
         </Route>
 
-        <Route path='/profile'>
+        <Route path='profile'>
           <Profile></Profile>
         </Route>
         
